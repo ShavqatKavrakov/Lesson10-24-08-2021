@@ -1,36 +1,11 @@
 ﻿using System;
 namespace ConsoleApp
 {
-    class Program
+  class Converter
     {
-        static void Main(string[] args)
-        {
-          {
-            //Дз2
-            Console.WriteLine("Введите значение usd,uro,rub");
-              Converter con=new Converter(double.Parse(Console.ReadLine()),double.Parse(Console.ReadLine()),double.Parse(Console.ReadLine()));
-           Console.Write("Сколько сомони вы хотите конвертировать: ");
-           double r=double.Parse(Console.ReadLine());
-           Console.Write("Конвертации в usd или euro или rub: ");
-           string s=Console.ReadLine();
-           Console.WriteLine($"Результат конвертация из сомони в {s}: {Math.Round(con.SomoniToCurrency(s,r),4)}" );
-           Console.WriteLine($"Обратный конвертация: из {s} в сомони ");
-           Console.Write($"Сколько {s} вы хотите конвертировать: ");
-           r=double.Parse(Console.ReadLine());
-           Console.WriteLine($"Результат: {Math.Round(con.CurrencyToSomoni(s,r),4)}\n");
-          }
-          {
-            //Дз3
-            Console.WriteLine("Введите имя, фамилия и уровень разработчика(junior или middle или senior) ");
-            Employee empl=new Employee(Console.ReadLine(),Console.ReadLine(),Console.ReadLine());
-            empl.Salary();
-            empl.Tax();
-          }   
-        } 
-    }
-    class Converter
-    {
-    double usd,euro,rub;
+      private double usd;
+      private  double euro;
+      private  double rub;
      public Converter(double usd ,double euro,double rub)
      {
        this.usd=usd*11.33;
@@ -60,7 +35,9 @@ namespace ConsoleApp
     }
     class Employee
     {
-    string name,surname,level;
+   private string name;
+   private  string surname;
+   private string level;
     int salary;
      public Employee(string name,string surname,string level)
      {
@@ -80,11 +57,32 @@ namespace ConsoleApp
        return ;
        }
        }
-       Console.WriteLine($"{surname} {name}, Разработчик C++, Зарплата {level} разработчик: {salary} сомони ");      
+       Console.WriteLine($"{surname} {name}:, Разработчик C#:, Зарплата {level} разработчик: {salary} сомони ");      
      }
      public void Tax()
      {
        Console.WriteLine($"Налоговый сбор: {salary*14/100}");
      }
     }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Дз2
+            Converter con= new Converter(12,23,45);
+           Console.WriteLine("На каком валюте вы хотите конвертировать(usd,euro,rub) и сколько");
+           string s=Console.ReadLine();
+           double r=double.Parse(Console.ReadLine());
+           Console.WriteLine($"Результат вашего конвертация из сомони в {s}: {Math.Round(con.SomoniToCurrency(s,r),4)}" );
+           Console.WriteLine($"Обратный конвертация на каком валюте(usd,euro,rub) и сколько");
+           s=Console.ReadLine();
+           r=double.Parse(Console.ReadLine());
+           Console.WriteLine($"Результат конвертация из {s} в сомони: {Math.Round(con.CurrencyToSomoni(s,r),4)}\n");
+            //Дз3
+            Employee empl=new Employee("Shavqat","Kavrakov","junior");
+            empl.Salary();
+            empl.Tax();
+        } 
+    }
+    
 }
